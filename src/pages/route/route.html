@@ -1,0 +1,117 @@
+<!--
+  Generated template for the RoutePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>巡检</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="route_card">
+    <div class="route_card_header">
+      <h2>巡检单</h2>
+      <button (click)="goHistory()">审批历史</button>
+    </div>
+    <div>
+      <!--<p>巡检名称：<span>{{data.title}}</span></p>-->
+      <!--<p>巡检设备：<span>{{data.item}}</span></p>-->
+      <!--<p>巡检区域：<span>{{data.region}}</span></p>-->
+      <!--<p>巡检部门：<span>{{data.dept}}</span></p>-->
+      <!--<p>巡检负责人：<span>{{data.ins_user}}</span></p>-->
+      <div class="route_card_div">
+        <p>巡检名称：　<span *ngIf="readonly">{{data.title}}</span></p>
+        <input *ngIf="!readonly" [readonly]="readonly" type="text" [value]="data.title" />
+      </div>
+      <div class="route_card_div">
+        <p>巡检设备：　<span *ngIf="readonly">{{data.item}}</span></p>
+        <input *ngIf="!readonly" [readonly]="readonly" type="text" [value]="data.item" />
+      </div>
+      <div class="route_card_div">
+        <p>巡检区域：　<span>{{data.region}}</span></p>
+        <!--<input [readonly]="readonly" (tap)="changeRegion()" type="text" [value]="data.region" />-->
+      </div>
+      <p style="margin-top:10px;">巡检部门：　<span>{{data.dept}}</span></p>
+      <div class="route_card_div">
+        <p>巡检负责人：<span *ngIf="readonly">{{data.ins_user}}</span></p>
+        <input *ngIf="!readonly" [readonly]="readonly" type="text" [value]="data.ins_user"/>
+      </div>
+      <div class="route_card_div">
+        <p>巡检时间：　<span *ngIf="readonly">{{data.xjsj}}</span></p>
+        <input *ngIf="!readonly" [readonly]="readonly" (tap)="showTime()" [value]="datatime|date:'yyyy-MM-dd HH:mm:ss'" style="margin-right:10px;" type="text" /><span *ngIf="!readonly" class="must">*必选</span>
+      </div>
+      <p style="margin-top:10px;" class="e_other_p">附件：<img *ngIf="fileList.length==0" src="assets/imgs/附件-未添加.png" /><img *ngIf="fileList.length>0" src="assets/imgs/附件-已添加.png" /> </p>
+    </div>
+    <div class="choose_file">
+      <div class="choose_file_btn">
+        <img (click)="openImgs()" class="jpg" src="assets/imgs/附件-添加图片图片.png" />
+        <!--<img class="jpg" src="assets/imgs/附件-添加文件.png" />-->
+      </div>
+      <div class="choose_fileList">
+        <div (click)="downfile(file.id,file.name)" *ngFor="let file of fileList" text-center class="choose_filediv">
+          <img src="{{file.url}}" />
+          <p text-center>{{file.name}}</p>
+          <h2>{{file.note}}</h2>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="readonly" class="route_card_div">
+      <p>是否合规：</p>
+      <div class="e_input">
+        <div text-center>
+          <input [(ngModel)]="sfhg"  type="radio" id="h3" value="是" name="h3"/>
+          <label for="h3">合规</label>
+        </div>
+        <div text-center>
+          <input [(ngModel)]="sfhg"  type="radio" id="h4" value="否" name="h3"/>
+          <label for="h4">不合规</label>
+        </div>
+      </div>
+    </div>
+  </ion-list>
+
+  <ion-list class="route_card">
+    <div class="route_card_header">
+      <h2>巡检项</h2>
+    </div>
+    <div *ngFor="let item of data.subTableList,let i=index">
+      <div class="route_card_div">
+        <p>巡检项：</p><span>{{item.name}}</span>
+      </div>
+      <div class="route_card_div">
+        <p>结果：</p>
+        <input [readonly]="readonly" [(ngModel)]="item.result" (ngModelChange)="changeResolte($event,i)" [value]="item.result" type="text" />
+      </div>
+    </div>
+
+
+
+  </ion-list>
+
+  <div text-center class="route_btn">
+    <button (click)="gotoPush()" >提交</button>
+  </div>
+
+</ion-content>
+
+<div *ngIf="batch&&!readonly" class="alert_btn">
+  <div text-center class="alert_button">
+    <div class="alert">
+      <div class="header">
+        <div (click)="closeBtn()" text-center class="a_h_left"><img src="assets/imgs/取消.png" /> </div>
+        <div text-center class="a_h_center">巡检区域</div>
+        <div (click)="saveRegion()" text-right class="a_h_right">保存</div>
+      </div>
+      <div style="overflow-y: scroll;" class="content">
+        <p [class.blue]="item.text==text" (click)="clickRegion(item.text)" *ngFor="let item of dicList">{{item.text}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,92 @@
+<!--
+  Generated template for the HistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>审批历史</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <!--<ion-row >-->
+      <!--<ion-col>-->
+        <!--<h2>序号</h2>-->
+        <!--<p *ngFor="let item of historyList, let i =index">{{i+1}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>任务名称</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.taskName}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>开始时间</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.startTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>结束时间</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.endTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>处理时长</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.durTime/1000+'秒'}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>执行人</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.exeFullname}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>审批状态</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.taskStatus}}</p>-->
+      <!--</ion-col>-->
+
+      <!--<ion-col>-->
+        <!--<h2>审批意见</h2>-->
+        <!--<p *ngFor="let item of historyList">{{item.opinion}} </p>-->
+      <!--</ion-col>-->
+
+    <!--</ion-row>-->
+
+    <div class="all" [style.height]="h">
+
+      <div class="history">
+        <div>序号</div>
+       <div>任务名称</div>
+        <div>开始时间</div>
+       <div>结束时间</div>
+       <div>处理时长</div>
+       <div>执行人</div>
+       <div>审批状态</div>
+       <div>审批意见</div>
+     </div>
+
+      <div   class="content">
+        <div *ngFor="let item of historyList,let i=index" class="center">
+          <span align-self-center>{{i+1}}</span>
+          <span>{{item.taskName}}</span>
+          <p>{{item.startTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+          <p>{{item.endTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+          <p>{{item.durTime/1000+'秒'}}</p>
+          <span>{{item.exeFullname}}</span>
+          <span>{{item.taskStatus}}</span>
+          <span>{{item.opinion}}</span>
+
+        </div>
+      </div>
+
+    </div>
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,159 @@
+<!--
+  Generated template for the TodoListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>待办事项<span (click)="doedit()" *ngIf="edit" class="edit"><span *ngIf="iscoust">({{coust}})</span>{{statusCheck}}</span></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="todoHeader">
+  <ion-list>
+    <ion-row>
+      <ion-col col-4 text-center >
+        <button [class.active]="todoListHad" (click)="showEvent()" >事件</button>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <button [class.active]="route" (click)="showRoute()">巡检</button>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <button>变更</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row-6">
+      <ion-col col-6 text-center>
+        <button (click)="statusHandle()" [class.active]="isActive1">待处理</button>
+      </ion-col>
+
+      <ion-col col-6 text-center>
+        <button (click)="statusClosed()" [class.active]="!isActive1">{{eventStatus}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <div class="todo_search">
+    <div class="todo_choose">
+      <span>人名</span>
+    </div>
+    <div class="todo_input">
+      <input  [(ngModel)]="search" type="search" (ngModelChange)="inputChange($event)" [ngModelOptions]="{standalone: true}" (keyup)="onSearchKeyUp($event)"  [value]="keyword"   placeholder="{{placeholder}}"/>
+      <ion-icon (click)="getUpData()" ios="ios-search" md="md-search"></ion-icon>
+    </div>
+    <!--<ion-searchbar [(value)]="keyword" (ionInput)="onInput($event)" placeholder="标题、负责人、设备、区域、工单号"></ion-searchbar>-->
+  </div>
+  </div>
+
+  <div on-swipe-up="showRefresh()" class="todo_scroll">
+
+    <!--<ion-refresher (closeDuration)="1" closeDuration="1" style="z-index: 3000;" (ionStart)="showRefresh($event)">-->
+      <!--<ion-refresher-content-->
+        <!--refreshingSpinner=""-->
+        <!--refreshingText=""-->
+        <!--closeDuration="1">-->
+      <!--</ion-refresher-content>-->
+    <!--</ion-refresher>-->
+
+    <!--<div *ngIf="isrefresh" style="padding-top:10px;" text-center>-->
+      <!--<ion-spinner icon="circles" class="spinner-light"></ion-spinner>-->
+      <!--<p>加载中...</p>-->
+    <!--</div>-->
+
+
+    <div text-center class="jpeg" *ngIf="isHandList">
+      <img style="width:40%; height:40%; margin-top:60px;" src="assets/imgs/站位图.png" />
+    </div>
+
+
+    <div *ngIf="todoListHad">
+      <div *ngFor="let item of todoList,let i=index">
+      <div *ngIf="event" class="todoContent">
+        <div *ngIf="checkbox" class="todoCheckbox">
+          <div>
+            <input (click)="getStatus(i,item.taskId)"  [(ngModel)]="list[i]"  type="checkbox" id="{{i}}" name="checkbox"/>
+            <label for="{{i}}"></label>
+          </div>
+        </div>
+      <ion-list (click)="gotoEvent(item['taskId'],item['taskName'])" class="event_card" >
+       <ion-avatar>
+        <img src="assets/imgs/关于软件itpsicon.png" />
+        </ion-avatar>
+      <div class="userName">{{item.creator}}</div>
+      <div class="event_card_time">
+        <h2>{{item.assignTime|date:'yyyy-MM-dd HH:mm:ss'}}<span [class.top]="item.topId" (click)="gotoTop($event,item.topId,item['taskId'])">置顶</span></h2>
+      </div>
+      <div class="card_info">
+        <h2>{{item.title}}</h2>
+        <span>工单编号：{{item.no}}</span>
+        <span>事件分类：{{item.category}}</span>
+        <span>当前状态：{{item.taskName}}</span>
+      </div>
+      <div [ngClass]="{'grade_top':item.urgent=='高','grade_center':item.urgent=='中','grade_bottom':item.urgent=='低'}">{{item.urgent}}</div>
+    </ion-list>
+  </div>
+      </div>
+
+  </div>
+
+
+
+    <div *ngIf="route">
+      <div class="todoContent"  *ngFor="let item of todoList,let i=index">
+        <div *ngIf="checkbox" class="todoCheckbox">
+          <div>
+            <input (click)="getStatus(i,item.taskId)"  [(ngModel)]="list[i]"  type="checkbox" id="{{i}}" name="checkbox"/>
+            <label for="{{i}}"></label>
+          </div>
+        </div>
+      <ion-list (click)="gotoRoute(item.taskId)" class="event_card">
+        <ion-avatar>
+          <img src="assets/imgs/关于软件itpsicon.png" />
+        </ion-avatar>
+        <div class="userName">{{item.creator}}</div>
+        <div class="event_card_time">
+          <h2>{{item.assignTime|date:'yyyy-MM-dd HH:mm:ss'}}<span [class.top]="item.topId" (click)="gotoTop($event,item.topId,item['taskId'])">置顶</span></h2>
+        </div>
+        <div class="card_info">
+          <h2>{{item.title}}</h2>
+          <span>巡检设备：　{{item.item}}</span>
+          <span>巡检区域：　{{item.region}}</span>
+          <span>巡检负责人：{{item.insUser}}</span>
+        </div>
+      </ion-list>
+    </div>
+    </div>
+
+
+
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  </div>
+
+</ion-content>
+<div *ngIf="batch" class="alert_btn">
+  <div text-center class="alert_button">
+    <div class="alert">
+      <div class="header">
+        <div (click)="closeBtn()" text-center class="a_h_left"><img src="assets/imgs/取消.png" /> </div>
+        <div text-center class="a_h_center">填写审批意见</div>
+        <div (click)="push()" text-right class="a_h_right">提交</div>
+      </div>
+      <div class="content">
+        <textarea [(ngModel)]="view" (ngModelChange)="view=$event"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

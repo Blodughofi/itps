@@ -1,0 +1,163 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.toolbar-ios ion-title{
+  background:#4990e2 ;
+  color:white;
+}
+
+.toolbar-title-ios{
+  color:white;
+}
+
+.toolbar-background-md {
+  background:#4990e2 ;
+
+}
+.toolbar-title-md{
+  color:white;
+  text-align:center;
+  font-size:18px;
+
+}
+.content-ios{
+  background: #fdfdfd;
+}
+
+.clear:after{
+  content:"";
+  display:block;
+  height:0;
+  clear:both;
+}
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+  color:white;
+}
+.back-button.show-back-button{
+  display:block;
+  position:absolute;
+  z-index: 1000;
+}
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+  color:white;
+}
+
+.content-ios{
+  background-color:#fdfdfd;
+}
+
+.alert-ios .alert-wrapper{
+  border-radius: 4px;
+}
+
+.alert-ios .alert-head{
+  background:#4990e2;
+  padding:0;
+}
+
+.alert-ios .alert-title{
+  color:white;
+  text-align:center;
+  line-height:50px;
+}
+
+.alert-ios .alert-message{
+  font-size:16px;
+  color:#000000;
+  line-height:70px;
+  text-align: center;
+  padding:0;
+}
+
+.alert-ios .alert-button{
+  height:45px;
+  border:0;
+  background:#e3effd;
+  border-radius:4px;
+  font-size:16px;
+  color:#000000;
+  min-width:40%;
+}
+
+.alert-ios .alert-button-group{
+  padding:0 20px 20px 20px;
+}
+
+.alert-ios .alert-button:last-child{
+  background:#4990e2;
+  color:white;
+  font-weight:100;
+  margin-left:20px;
+}
+
+.content-md{
+  background-color:#fdfdfd;
+}
+
+.alert-md .alert-wrapper{
+  border-radius: 4px;
+}
+
+.alert-md .alert-head{
+  background:#4990e2;
+  padding:0;
+}
+
+.alert-md .alert-title{
+  color:white;
+  line-height:50px;
+  text-align: center;
+}
+
+.alert-md .alert-message{
+  font-size:16px;
+  color:#000000;
+  line-height:70px;
+  text-align: center;
+  padding:0;
+}
+.alert-md .alert-button{
+  height:45px;
+  border:0;
+  background:#e3effd;
+  border-radius:4px;
+  font-size:16px;
+  color:#000000;
+  min-width:40%;
+}
+
+.alert-md .alert-button-group{
+  padding:0 20px 20px 20px;
+}
+
+.alert-md .alert-button:last-child{
+  background:#4990e2;
+  color:white;
+  font-weight:100;
+  margin-left:20px;
+}
+.alert-md .alert-button .button-inner{
+  justify-content:center;
+}
+
+.alert-ios .alert-radio-group{
+  border-top:0 solid #dbdbdf !important;
+}
+
+.alert-ios .alert-message:empty{
+  padding:0;
+}

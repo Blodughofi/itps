@@ -1,0 +1,122 @@
+page-history {
+
+  html{
+    height:100%;
+  }
+  body{
+    height:100%;
+  }
+
+  .toolbar-ios ion-title{
+    background:white;
+    color:black;
+    font-size:16px;
+  }
+
+  .toolbar-title-ios{
+    color:black;
+  }
+
+  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+    color:#4a90e2;
+  }
+
+  ion-app.ios [padding] .scroll-content{
+    padding:10px 20px 0 20px;
+  }
+
+  .row{
+    border:1px solid #4990e2;
+    border-radius:4px;
+  }
+
+  .col{
+    padding:0;
+    text-align:center;
+  }
+
+  h2{
+    background:#4a90e2;
+    font-size:14px;
+    color:#ffffff;
+    line-height:60px;
+    margin:0;
+  }
+
+  p{
+    line-height:60px;
+    font-size:14px;
+    color:#000000;
+    text-align:center;
+    box-sizing: border-box;
+  }
+
+  ion-col{
+    box-sizing: border-box;
+  }
+
+  [padding] h1:first-child, [padding] h2:first-child, [padding] h3:first-child, [padding] h4:first-child, [padding] h5:first-child, [padding] h6:first-child{
+    margin-top:0;
+  }
+
+  .all{
+    width:100%;
+    height:auto;
+    border:1px solid #4990e2;
+    border-radius:4px;
+
+    .history{
+      div{
+        width:12.5%;
+        background:#4a90e2;
+        font-size:14px;
+        color:#ffffff;
+        line-height:60px;
+        height:60px;
+        float:left;
+        text-align: center;
+      }
+    }
+
+    .content{
+
+
+      .center{
+        width:100%;
+        border-bottom:1px solid #4990e2;
+        display: table;
+        height:59px;
+        vertical-align: middle;
+
+      span{
+        width:12.5%;
+        height:59px;
+        float:left;
+        text-align: center;
+        line-height:60px;
+        display:table-cell;
+        vertical-align: middle;
+      }
+        p{
+          width:12.5%;
+          height:59px;
+          float:left;
+          text-align: center;
+          line-height:20px;
+          display:table-cell;
+          vertical-align: middle;
+          box-sizing: border-box;
+          padding-top: 10px;
+        }
+    }
+
+    }
+    .content div:last-child{
+      border-bottom:0;
+
+    }
+  }
+
+
+
+}

@@ -1,0 +1,16 @@
+<!-- Generated template for the AlertButtonComponent component -->
+<div text-center class="alert_button">
+  <div  class="alert">
+    <div class="header">{{message}}</div>
+    <div class="content">
+      <div text-center class="anthor">
+        <p>{{anthorMessage}}</p>
+        <div class="alert_input"><input [value]="user" type="text" /><img (click)="pushSearch()" src="assets/imgs/添加人.png" /> </div>
+      </div>
+    </div>
+    <div text-center class="footer">
+      <button (click)="changeClose()" class="btn1">取消</button>
+      <button (click)="pushAnthor()" class="btn2">确定</button>
+    </div>
+  </div>
+</div>

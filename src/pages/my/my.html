@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      我的
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list [navPush]="UserInfoPage" class="userInfo">
+
+    <ion-avatar class="head" ion-start>
+      <img src="assets/imgs/关于软件itpsicon.png" />
+    </ion-avatar>
+    <div class="info">
+      <h2>{{userData.fullname}}</h2>
+      <h3>账号：{{userData.account}}</h3>
+    </div>
+
+    <ion-icon  icon-end name="ios-arrow-forward"></ion-icon>
+  </ion-list>
+
+  <ion-list class="about">
+
+    <ion-avatar>关于软件</ion-avatar>
+
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+
+  </ion-list>
+  <ion-list text-center>
+    <button (tap)="logout()" class="my_button">退出登录</button>
+  </ion-list>
+
+
+</ion-content>

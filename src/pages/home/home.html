@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>首页 <span class="custom" [navPush]="CustomPage">自定义</span></ion-title>
+    <!--<ion-label class="custom" [navPush]="CustomPage">自定义</ion-label>-->
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list >
+    <div *ngFor="let item of custom">
+  <ion-item (click)="gotoPage(item.text)" *ngIf="item.checked"  class="card">
+    <ion-avatar item-start>
+      <img src="{{item.img}}" />
+      <div *ngIf="false" class="count">50</div>
+    </ion-avatar>
+    <div>
+      <h2>{{item.text}}<span>2018/05/01</span></h2>
+      <p>{{item.info}}</p>
+    </div>
+  </ion-item>
+    </div>
+</ion-list>
+
+
+
+</ion-content>

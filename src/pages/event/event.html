@@ -1,0 +1,343 @@
+<!--
+  Generated template for the EventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<script src="../../../platforms/android/cordova/lib/builders/GradleBuilder.js"></script>
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>事件</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="e_header">
+    <div class="e_h_left">
+      <img src="assets/imgs/关于软件itpsicon.png" />
+    </div>
+
+    <div class="e_h_center">
+      <h2>{{username}}</h2>
+      <p>{{account}}</p>
+    </div>
+
+    <div text-right class="e_h_right">
+      <button  (click)="gotoHistoryPage()">审批历史</button>
+      <p>{{time|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+    </div>
+
+  </div>
+  <ion-list *ngFor="let item of list"  class="e_content">
+    <ion-item>
+      <div>
+        <div class="grade grade_center">中</div>
+        <p style="margin-top:30px;">工单编号：<span>{{item.no}}</span></p>
+        <p>标题描述：<span>{{item.title}}</span></p>
+        <p>详情描述：<span>{{item.description}}</span></p>
+        <p>服务区域：<span>{{item.customerregion}}</span></p>
+        <p>服务地址：<span>{{item.serviceaddress}}</span></p>
+        <p>关联配置：<span>{{item.ci}}</span></p>
+      </div>
+
+      <div class="maxMarginTop">
+        <p>事件来源：<span>{{item.mode}}</span></p>
+        <p>事件类型：<span>{{eventType}}</span></p>
+        <p>事件分类：<span>{{item.categoryincident}}</span></p>
+        <p>影响程度：<span>{{item.impact}}</span></p>
+        <p>优先级　：<span>{{item.priority}}</span></p>
+        <p>服务级别：<span>{{item.servicelevel}}</span></p>
+      </div>
+
+      <div class="marginTop">
+        <p>处理过程 （一线）：</p>
+        <div class="e_ques">
+          <p>原因分析：<span *ngIf="firstcause&&show2">{{firstcause}}</span></p>
+          <textarea *ngIf="!firstcause&&!show2||show1" [(ngModel)]="cause" (ngModelChange)="cause=$event"></textarea>
+          <p>解决方案：<span *ngIf="firstsolution&&show2">{{firstsolution}}</span><span *ngIf="!firstsolution&&!show2" class="must">*必填</span></p>
+          <textarea *ngIf="!firstsolution&&!show2||show1" [(ngModel)]="solution" (ngModelChange)="solution=$event"></textarea>
+        </div>
+      </div>
+
+      <div *ngIf="show2" class="marginTop">
+        <p>处理过程 （二线）：</p>
+        <div class="e_ques">
+          <p>原因分析：<span *ngIf="second&&show3">{{secondcause}}</span></p>
+          <textarea *ngIf="!second&&!show3" [(ngModel)]="cause" (ngModelChange)="cause=$event"></textarea>
+          <p>解决方案：<span *ngIf="second&&show3">{{secondsolution}}</span><span *ngIf="!second&&!show3" class="must">*必填</span></p>
+          <textarea *ngIf="!second&&!show3" [(ngModel)]="solution" (ngModelChange)="solution=$event"></textarea>
+        </div>
+      </div>
+
+      <div *ngIf="show3" class="marginTop">
+        <p>处理过程 （三线）：</p>
+        <div class="e_ques">
+          <p>原因分析：<span *ngIf="three">{{threecause}}</span></p>
+          <textarea *ngIf="!three" [(ngModel)]="cause" (ngModelChange)="cause=$event"></textarea>
+          <p>解决方案：<span *ngIf="threesolution">{{threesolution}}</span><span *ngIf="!three" class="must">*必填</span></p>
+          <textarea *ngIf="!three" [(ngModel)]="solution" (ngModelChange)="solution=$event"></textarea>
+        </div>
+      </div>
+
+
+      <div *ngIf="showFinal" class="marginTop">
+        <p>关闭事件：</p>
+        <div class="class_close">
+          <p>　回访状态：</p>
+          <div class="class_close_div">
+            <div>
+              <input [(ngModel)]="revisitStatus" type="radio" id="s1" value="成功解决" name="回访状态"/>
+              <label for="s1">成功解决</label>
+            </div>
+            <div>
+              <input [(ngModel)]="revisitStatus" type="radio" id="s2" value="部分成功解决" name="回访状态"/>
+              <label for="s2">部分成功解决</label>
+            </div>
+            <div>
+              <input [(ngModel)]="revisitStatus" type="radio" id="s3" value="未解决" name="回访状态"/>
+              <label for="s3">未解决</label>
+            </div>
+          </div>
+        </div>
+        <div class="e_other_padding2 marginTop">
+          <p>反馈意见:<span class="must">*选填</span></p>
+          <textarea [(ngModel)]="revisitComment" (ngModelChange)="revisitComment=$event"></textarea>
+        </div>
+        <div class="class_close marginTop">
+        <p>　关闭代码：</p>
+        <div class="class_close_div">
+          <div>
+            <input [(ngModel)]="closeCode" type="radio" id="c1" value="成功" name="关闭代码"/>
+            <label for="c1">成功</label>
+          </div>
+          <div>
+            <input [(ngModel)]="closeCode" type="radio" id="c2" value="取消" name="关闭代码"/>
+            <label for="c2">取消</label>
+          </div>
+          <div>
+            <input [(ngModel)]="closeCode" type="radio" id="c3" value="回退" name="关闭代码"/>
+            <label for="c3">回退</label>
+          </div>
+        </div>
+      </div>
+        <div class="e_other_padding2 marginTop">
+          <p>处理结果:<span class="must">*选填</span></p>
+          <textarea  [(ngModel)]="closeComment" (ngModelChange)="closeComment=$event"></textarea>
+        </div>
+        <div class="class_close marginTop">
+          <p>　满意度　：</p>
+          <div class="class_close_div">
+            <div>
+              <input [(ngModel)]="revisitScore" type="radio" id="r1" value="满意" name="满意度"/>
+              <label for="r1">满意</label>
+            </div>
+            <div>
+              <input [(ngModel)]="revisitScore" type="radio" id="r2" value="一般" name="满意度"/>
+              <label for="r2">一般</label>
+            </div>
+            <div>
+              <input [(ngModel)]="revisitScore" type="radio" id="r3" value="不满意" name="满意度"/>
+              <label for="r3">不满意</label>
+            </div>
+            <div>
+              <input [(ngModel)]="revisitScore" type="radio" id="r4" value="建议" name="满意度"/>
+              <label for="r4">建议</label>
+            </div>
+          </div>
+        </div>
+        <div class="handle marginTop">
+          <p>　工单类型：</p>
+          <div class="e_input">
+            <div>
+              <input [(ngModel)]="caseType" type="radio" id="ct1" value="事件" name="工单类型"/>
+              <label for="ct1">事件</label>
+            </div>
+            <div>
+              <input [(ngModel)]="caseType" type="radio" id="ct2" value="请求" name="工单类型"/>
+              <label for="ct2">请求</label>
+            </div>
+          </div>
+        </div>
+        <div class="handle marginTop">
+          <p>　生成知识：</p>
+          <div class="e_input">
+            <div>
+              <input [(ngModel)]="knowledge" type="radio" id="k1" value="1" name="生成知识"/>
+              <label for="k1">是</label>
+            </div>
+            <div>
+              <input [(ngModel)]="knowledge" type="radio" id="k2" value="0" name="生成知识"/>
+              <label for="k2">否</label>
+            </div>
+          </div>
+        </div>
+        <div class="closeTime marginTop">
+          <p>　关闭时间：<input [value]="closeTime" (click)="showTime()" [(ngModel)]="closeTime" type="text" /><span class="must">*必填</span></p>
+        </div>
+      </div>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-list *ngFor="let item of list" class="e_other e_content">
+    <ion-item>
+      <div class="e_marginTop">
+        <div class="e_other_padding">
+          <p>基本信息：</p>
+          <p>　项目名称：<span>{{item.project}}</span></p>
+          <p>　创建部门：<span>{{item.customer}}</span></p>
+          <p>　合同名称：<span>{{item.contract}}</span></p>
+          <p class="e_other_p">　工单附件： <img (click)="openPics()" *ngIf="fileList.length==0" src="assets/imgs/附件-未添加.png" /><img (click)="openPics()" *ngIf="fileList.length>0" src="assets/imgs/附件-已添加.png" /></p>
+          <!--<img *ngIf="fileList.length==0" class="jar" src="assets/imgs/附件-未添加.png" />-->
+          <!--<img *ngIf="fileList.length>0" class="jar" src="assets/imgs/附件-添加图片图片.png" />-->
+        </div>
+        <div class="choose_file">
+          <div class="choose_file_btn">
+            <img (click)="ImgActionSheet()" class="jpg" src="assets/imgs/附件-添加图片图片.png" />
+            <img *ngIf="jpg" class="jpg" src="assets/imgs/附件-添加文件.png" />
+          </div>
+          <div class="choose_fileList">
+            <div  *ngFor="let file of fileList,let i=index" (click)="downfile(file.id,file.name,file.ext,file.url,i)" text-center class="choose_filediv">
+              <img src="{{file.url}}" />
+              <p text-center>{{file.name}}</p>
+              <h2>{{file.note}}</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="marginTop">
+        <div class="e_other_padding">处理详情：</div>
+        <div class="e_other_padding handle">
+          <p>　处理方式：</p>
+          <div class="e_input">
+            <div>
+              <input [(ngModel)]="adress" type="radio" id="h1" value="远程" name="程"/>
+              <label for="h1">远程</label>
+            </div>
+            <div>
+              <input [(ngModel)]="adress" type="radio" id="h2" value="现场" name="程"/>
+              <label for="h2">现场</label>
+            </div>
+          </div>
+        </div>
+          <!--<input type="radio" value="现场" name="way" />现场 </p>-->
+        <div class="e_other_padding handle marginTop">
+          <p>　是否解决：</p>
+          <div class="e_input">
+            <div>
+              <input [(ngModel)]="bool"  type="radio" id="h3" value="1" name="h3"/>
+              <label for="h3">是　</label>
+            </div>
+            <div>
+              <input [(ngModel)]="bool"  type="radio" id="h4" value="0" name="h3"/>
+              <label for="h4">否　</label>
+            </div>
+          </div>
+        </div>
+        <div class="person marginTop">
+          <p class="e_other_padding">　解决人员：</p>
+
+          <div class="e_search">
+            <input type="text" [(ngModel)]="user" [value]="user" (tap)="goPersonSearch()"   placeholder="解决人员"/>
+            <ion-icon ios="ios-search" md="md-search"></ion-icon>
+          </div>
+        </div>
+
+        <div style="margin:40px 0 0 20px;" *ngIf="specail" class="e_handle">
+          <div *ngIf="!showFinal">
+            <div class="e_h_magin">
+              <input type="radio" [(ngModel)]="way" (ngModelChange)="prePush()" id="h5" value="默认派单" name="way"/>
+              <label for="h5">默认派单</label>
+              <input type="radio" [(ngModel)]="way" (ngModelChange)="workPush()" id="h6" value="人工派单" name="way"/>
+              <label *ngIf="targetNodeUser" for="h6">人工派单</label>
+            </div>
+            <div *ngIf="choosen" class="e_handle_pChoose e_marginTop">
+              <div  class="e_handle_p">
+                <div *ngFor="let target of targetNodeUserList,let i=index">
+                  <input (ngModelChange)="col(target.nodeName,target.nodeId,i)" [(ngModel)]="name" type="radio" id="{{i}}" value="{{target.nodeName}}" name="dispatch"/>
+                  <label for="{{i}}">{{target.nodeName}}</label>
+                </div>
+                <!--<div>-->
+                  <!--<input [(ngModel)]="targetUser" type="radio" id="person2" value="1" name="dispatch"/>-->
+                  <!--<label for="person2">{{targetNodeUser[1]['nodeName']}}</label>-->
+                <!--</div>-->
+              </div>
+              <div class="e_handle_choose">
+                <input disabled="disabled"  [value]="exector" placeholder="" type="text" />
+                <img (click)="goExecutor()" src="assets/imgs/添加人.png" />
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+
+  <div *ngIf="specail" class="buttons">
+    <ion-row>
+      <ion-col *ngIf="returnBtn">
+        <button (click)="return()">驳回</button>
+      </ion-col>
+      <ion-col *ngIf="isanthor">
+        <button  (click)="anotherPush()">转交</button>
+      </ion-col>
+      <ion-col *ngIf="!showFinal">
+        <button (click)="push()">提交</button>
+      </ion-col>
+      <ion-col *ngIf="showFinal">
+        <button (click)="close()">关闭</button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>
+<!--<alert-button [taskId]="id"  (goto)="goto($event)" *ngIf="anthor"></alert-button>-->
+
+<div >
+  <div *ngIf="isassigner" text-center class="alert_btn">
+    <div  class="alert_button">
+      <div  class="alert">
+        <div text-center class="header">
+          <p text-center>{{message}}</p>
+        </div>
+        <div class="content">
+          <div text-center class="anthor">
+            <p>{{anthorMessage}}</p>
+            <div class="alert_input"><input [value]="assigneeuser" type="text" /><img (click)="pushSearch()" src="assets/imgs/添加人.png" /> </div>
+          </div>
+        </div>
+        <div text-center class="footer">
+          <button (click)="changeClose()" class="btn1">取消</button>
+          <button (click)="pushAnthor()" class="btn2">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isoipition" class="alert_btn">
+    <div text-center class="alert_button">
+      <div class="alert">
+        <div class="header">
+          <div (click)="closeBtn()" text-center class="a_h_left"><img src="assets/imgs/取消.png" /> </div>
+          <div text-center class="a_h_center">{{oipitionMessage}}</div>
+          <div (click)="saveOipition()" text-right class="a_h_right">保存</div>
+        </div>
+        <div class="content">
+          <textarea [(ngModel)]="view" (ngModelChange)="view=$event"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
