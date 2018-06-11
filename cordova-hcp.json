@@ -1,0 +1,7 @@
+{
+  "name": "itps",
+  "ios_identifier": "com.qinglv.itps",
+  "android_identifier": "com.qinglv.itps",
+  "update": "now",
+  "content_url": "http://47.98.125.69/ftp/itps/www"
+}
